@@ -1,0 +1,11 @@
+MANIFEST.in
+README
+SkyLinesPolyEncoder.cpp
+SkyLinesPolyEncoder.h
+setup.cfg
+setup.py
+skylinespolyencode_py.cpp
+SkyLinesPolyEncode.egg-info/PKG-INFO
+SkyLinesPolyEncode.egg-info/SOURCES.txt
+SkyLinesPolyEncode.egg-info/dependency_links.txt
+SkyLinesPolyEncode.egg-info/top_level.txt

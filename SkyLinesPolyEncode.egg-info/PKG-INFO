@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: SkyLinesPolyEncode
+Version: 0.1
+Summary: SkyLines Polyline encoding (C++ extension)
+Home-page: http://github.com/TobiasLohner/py-skylinespolyencode/
+Author: Tobias Lohner
+Author-email: tobias@lohner-net.de
+License: UNKNOWN
+Description: Multidimensional encoding of line & polygon coordinates for use in SkyLines. Based on cGPolyEncode by Robert Coup <robert.coup@koordinates.com>
+Keywords: gis,geospatial,google-maps,gmaps,mapping
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: C++
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Topic :: Utilities
+Provides: skylinespolyencode
