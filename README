@@ -11,3 +11,5 @@ But you can also use it from a C++ application directly:
 
 See skylinespolyencode_test.cpp for more details on how to interface with it.
 
+Based on cGPolyEncode by Robert Coup <robert.coup@koordinates.com>
+
