@@ -191,6 +191,21 @@ auto_ptr<pair<string, string> > SkyLinesPolyEncoder::encode(vector<pair<double,d
     return r;
 }
 
+string SkyLinesPolyEncoder::encodeList(list<int>& points) {
+    ostringstream encodedList;
+
+    int val = 0;
+
+    for (list<int>::iterator i = points.begin(); i != points.end(); i++) {
+        int dval = *i - val;
+        val = *i;
+
+        encodedList << encodeSignedNumber(dval);
+     }
+
+     return encodedList.str();
+}
+
 vector<int> SkyLinesPolyEncoder::classify(size_t n_points, const double dists[], double absMaxDist) {
     vector<int> r;
 

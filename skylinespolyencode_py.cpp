@@ -151,6 +151,52 @@ SkyLinesPolyEncoderPy_classify(SkyLinesPolyEncoderPy *self, PyObject *args, PyOb
 }
 
 static PyObject*
+SkyLinesPolyEncoderPy_encodeList(SkyLinesPolyEncoderPy *self, PyObject *args) {
+    // FIXME: how to specify method signature?
+    PyObject *p_list;
+
+    if (!PyArg_ParseTuple(args, "O", &p_list))
+        return NULL;
+
+    // Check we actually have a sequence of two-tuples and populate a
+    // std::vector with the values. It'd be nice to pass the values through
+    // without iterating needlessly...
+    if (!(p_list = PySequence_Fast(p_list, "expected sequence type"))) {
+        return NULL;
+    }
+
+    Py_ssize_t nList = PySequence_Fast_GET_SIZE(p_list);
+
+    list<int> n_list;
+    for (Py_ssize_t i=0; i<nList; i++) {
+        PyObject *p_c = PySequence_Fast_GET_ITEM(p_list, i);
+        if (!PyNumber_Check(p_c)) {
+          PyErr_SetString(PyExc_TypeError, "expected list with numbers");
+          return NULL;
+        }
+
+        PyObject *pn = PyNumber_Int(p_c);
+        n_list.push_back(PyInt_AsLong(pn));
+        Py_DECREF(pn);
+    }
+    Py_DECREF(p_list);
+
+    // do our encoding
+    string n_result;
+    // might as well allow some other threads to run...
+    Py_BEGIN_ALLOW_THREADS
+    n_result = self->spe->encodeList(n_list);
+    Py_END_ALLOW_THREADS
+
+    // return the result
+    PyObject *el;
+
+    el = PyString_FromString(n_result.c_str());
+
+    return el;
+}
+
+static PyObject*
 SkyLinesPolyEncoderPy_encode(SkyLinesPolyEncoderPy *self, PyObject *args) {
     // FIXME: how to specify method signature?
     PyObject *p_points;
@@ -250,7 +296,8 @@ static PyMemberDef SkyLinesPolyEncoderPy_members[] = {
 
 static PyMethodDef SkyLinesPolyEncoderPy_methods[] = {
     {"classify", (PyCFunction)SkyLinesPolyEncoderPy_classify, METH_VARARGS|METH_KEYWORDS, "Classify a sequence of points"},
-    {"encode", (PyCFunction)SkyLinesPolyEncoderPy_encode, METH_VARARGS, "Encode a sequence of points"},
+    {"encode", (PyCFunction)SkyLinesPolyEncoderPy_encode, METH_VARARGS, "Encode a sequence of classified (lon,lat)-points"},
+    {"encodeList", (PyCFunction)SkyLinesPolyEncoderPy_encodeList, METH_VARARGS, "Encode a sequence of numbers"},
     {NULL}  /* Sentinel */
 };
 

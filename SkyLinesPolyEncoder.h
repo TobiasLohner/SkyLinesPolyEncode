@@ -31,6 +31,7 @@ public:
 
     std::vector<int> dpEncode(std::vector<std::vector<double> >& points, char *type);
     std::auto_ptr<std::pair<std::string, std::string> > encode(std::vector<std::pair<double,double> >& points, std::vector<int>& levels);
+    std::string encodeList(std::list<int>& points);
     int getNumLevels() { return numLevels; }
     int getZoomFactor() { return zoomFactor; }
 };
