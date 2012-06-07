@@ -125,16 +125,14 @@ double SkyLinesPolyEncoder::distance_dp(vector<double>& p0, vector<double>& p1, 
 
 double SkyLinesPolyEncoder::distance_simple(vector<double>& p0, vector<double>& p1, vector<double>& p2, list<size_t>& points) {
     double out = 0.0;
-    double simple_dist1 = 0.0, simple_dist2 = 0.0;
 
     for (list<size_t>::iterator i = points.begin(); i != points.end(); i++) {
-      simple_dist1 += pow(p1[*i] - p0[*i], 2);
-      simple_dist2 += pow(p2[*i] - p0[*i], 2);
+      out += sqrt(abs(p1[*i] - p0[*i])) + sqrt(abs(p2[*i] - p0[*i]));
     }
 
-    out += (simple_dist1 + simple_dist2) / 4;
+    out = pow(out, 2)/4;
 
-    return sqrt(out);
+    return out;
 }
 
 string SkyLinesPolyEncoder::encodeSignedNumber(int num) {
