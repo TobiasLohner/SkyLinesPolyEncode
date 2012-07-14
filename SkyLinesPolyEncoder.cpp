@@ -223,18 +223,20 @@ vector<int> SkyLinesPolyEncoder::classify(size_t n_points, const double dists[],
         r.push_back(numLevels - computeLevel(absMaxDist) - 1);
     }
 
-    for (size_t i=1; i<n_points-1; i++) {
+    if (n_points > 1) {
+        for (size_t i=1; i<n_points-1; i++) {
 
-        if (dists[i] != 0.0)
-          r.push_back(numLevels - computeLevel(dists[i]) - 1);
-        else
-          r.push_back(-1);
-    }
+            if (dists[i] != 0.0)
+              r.push_back(numLevels - computeLevel(dists[i]) - 1);
+            else
+              r.push_back(-1);
+        }
 
-    if (forceEndpoints) {
-        r.push_back(numLevels - 1);
-    } else {
-        r.push_back(numLevels - computeLevel(absMaxDist) - 1);
+        if (forceEndpoints) {
+            r.push_back(numLevels - 1);
+        } else {
+            r.push_back(numLevels - computeLevel(absMaxDist) - 1);
+        }
     }
 
     return r;
