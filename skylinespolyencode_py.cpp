@@ -218,8 +218,10 @@ SkyLinesPolyEncoderPy_encode(SkyLinesPolyEncoderPy *self, PyObject *args) {
     Py_ssize_t nPoints = PySequence_Fast_GET_SIZE(p_points);
     Py_ssize_t nLevels = PySequence_Fast_GET_SIZE(p_levels);
 
-    if (nPoints != nLevels)
+    if (nPoints != nLevels) {
+      PyErr_SetString(PyExc_ValueError, "number of points not equal number of levels");
       return NULL;
+    }
 
     vector<pair<double,double> > n_points;
     vector<int> n_levels;
