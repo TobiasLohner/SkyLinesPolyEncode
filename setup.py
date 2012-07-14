@@ -13,7 +13,7 @@ setup(name='SkyLinesPolyEncode',
     author_email='tobias@lohner-net.de',
     provides=['skylinespolyencode'],
     keywords='gis,geospatial,google-maps,gmaps,mapping',
-    url='http://github.com/TobiasLohner/py-skylinespolyencode/',
+    url='http://github.com/TobiasLohner/SkyLinesPolyEncode/',
     ext_modules=[
         Extension("skylinespolyencode", ["skylinespolyencode_py.cpp", "SkyLinesPolyEncoder.cpp"]),
     ],
