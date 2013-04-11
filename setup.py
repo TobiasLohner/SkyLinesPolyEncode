@@ -6,7 +6,7 @@ except:
     from distutils.core import setup, Extension
 
 setup(name='SkyLinesPolyEncode',
-    version='0.1.1',
+    version='0.1.2',
     description="SkyLines Polyline encoding (C++ extension)",
     long_description="Multidimensional encoding of line & polygon coordinates for use in SkyLines. Based on cGPolyEncode by Robert Coup <robert.coup@koordinates.com>",
     author='Tobias Lohner',

@@ -116,8 +116,8 @@ SkyLinesPolyEncoderPy_classify(SkyLinesPolyEncoderPy *self, PyObject *args, PyOb
       if (PyList_Append(points, ep))
         return NULL;
 
+      Py_DECREF(ep);
     }
-    Py_DECREF(ep);
 
     if (PyDict_SetItemString(p_result, "points", points))
       return NULL;
