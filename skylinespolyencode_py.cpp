@@ -130,8 +130,9 @@ SkyLinesPolyEncoderPy_classify(SkyLinesPolyEncoderPy *self, PyObject *args, PyOb
       el = PyInt_FromLong(n_levels[i]);
       if (PyList_Append(levels, el))
         return NULL;
+
+      Py_DECREF(el);
     }
-    Py_DECREF(el);
 
     if (PyDict_SetItemString(p_result, "levels", levels))
       return NULL;

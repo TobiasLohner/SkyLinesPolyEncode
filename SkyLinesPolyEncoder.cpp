@@ -21,7 +21,7 @@ SkyLinesPolyEncoder::~SkyLinesPolyEncoder() {
 }
 
 vector<int> SkyLinesPolyEncoder::dpEncode(vector<vector<double> >& points, char *type) {
-    int i, maxLoc = 0;
+    unsigned i, maxLoc = 0;
     stack<pair<int, int> > stack;
     double *dists = new double[points.size()];
     fill(&dists[0], &dists[points.size()], 0.0);
@@ -50,14 +50,14 @@ vector<int> SkyLinesPolyEncoder::dpEncode(vector<vector<double> >& points, char 
 
     // simplify using Douglas-Peucker
     if (points.size() > 2) {
-        stack.push(pair<int, int>(0, (points.size() - 1)));
+        stack.push(pair<unsigned, unsigned>(0, (points.size() - 1)));
 
         while (stack.size() > 0) {
             pair<int, int> current = stack.top();
             stack.pop();
             maxDist = 0;
 
-            for (i = current.first + 1; i < current.second; i++) {
+            for (int i = current.first + 1; i < current.second; i++) {
                 temp = max(distance_dp(points[i], points[current.first], points[current.second], points_dp),
                   distance_simple(points[i], points[current.first], points[current.second], points_simple));
 
