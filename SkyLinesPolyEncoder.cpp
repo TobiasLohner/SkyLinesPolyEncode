@@ -142,18 +142,18 @@ double SkyLinesPolyEncoder::distance_simple(vector<double>& p0, vector<double>& 
 }
 
 string SkyLinesPolyEncoder::encodeSignedNumber(int num) {
-    int sgn_num = num << 1;
+    unsigned sgn_num = static_cast<unsigned>(num) << 1;
     if (num < 0) {
         sgn_num = ~(sgn_num);
     }
-    return (encodeNumber(sgn_num));
+    return encodeNumber(sgn_num);
 }
 
-string SkyLinesPolyEncoder::encodeNumber(int num) {
+string SkyLinesPolyEncoder::encodeNumber(unsigned num) {
     ostringstream encodeString;
 
     while (num >= 0x20) {
-        int nextValue = (0x20 | (num & 0x1f)) + 63;
+        unsigned nextValue = (0x20 | (num & 0x1f)) + 63;
         encodeString << ((char) (nextValue));
         num >>= 5;
     }

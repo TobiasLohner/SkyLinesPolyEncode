@@ -21,7 +21,7 @@ private:
     double distance_simple(std::vector<double>& p0, std::vector<double>& p1, std::vector<double>& p2, std::list<size_t>& points);
     inline int floor1e5(double coordinate) { return (int)floor(coordinate * 1e5); }
     std::string encodeSignedNumber(int num);
-    std::string encodeNumber(int num);
+    std::string encodeNumber(unsigned num);
     int computeLevel(double absMaxDist);
     std::vector<int> classify(size_t n_points, const double dists[], double absMaxDist);
     
